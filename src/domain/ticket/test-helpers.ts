@@ -19,7 +19,16 @@ export function makeTicket(overrides: Partial<Ticket> = {}): Ticket {
     customerId: customer.id,
     technicianId: technician.id,
     status: "new",
+    priority: "normal",
+    deviceType: "phone",
+    deviceModel: "iPhone 13",
+    serialNumber: null,
+    problem: "Cracked screen",
+    diagnosis: null,
     estimate: null,
+    expectedCompletionAt: null,
+    createdAt: "2026-10-01T09:00:00.000Z",
+    updatedAt: "2026-10-01T09:00:00.000Z",
     ...overrides,
   };
 }
