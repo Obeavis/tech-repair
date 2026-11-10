@@ -2,7 +2,7 @@
 
 A web portal for a small electronics repair shop. Customers open repair tickets and follow their progress; the shop team diagnoses devices, records estimates and keeps tickets up to date.
 
-> **Status: early development.** Only the project scaffold, the UI base, the ticket domain rules, an in-memory data layer and a mock sign-in exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
+> **Status: early development.** Only the project scaffold, the UI base, the ticket domain rules, an in-memory data layer, a mock sign-in and the customer screens exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
 
 ## Planned features
 
@@ -99,6 +99,8 @@ npm run dev
 
 Open http://localhost:3000. You are sent to the sign-in page, where one demo account per role (customer, technician and admin) signs in with a single click. While authentication is a mock, any password works.
 
+Signed in as the demo customer, you can see your repairs, send a new repair request, message the shop and approve or decline an estimate. Approving sends the ticket to In repair; declining needs a reason and closes the ticket. The technician and admin accounts only see a welcome page until the shop team screens exist.
+
 ## Design system
 
 Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the shadcn/ui components in `src/components/ui` consume them. The light and dark themes follow the saved choice or the system preference, and a script in the root layout applies it before first paint. Status tones always pair a color with a text label. Browse every component at `/ui-kit`.
@@ -129,7 +131,7 @@ Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the 
 - [x] Ticket domain: status machine, permissions, estimate rules
 - [x] In-memory repository and demo seed data
 - [x] Mock authentication with the three roles
-- [ ] Customer screens
+- [x] Customer screens
 - [ ] Shop team screens
 - [ ] Real database (Neon + Drizzle migrations) and real authentication
 - [ ] Vercel deployment guide and first-admin setup
