@@ -2,7 +2,7 @@
 
 A web portal for a small electronics repair shop. Customers open repair tickets and follow their progress; the shop team diagnoses devices, records estimates and keeps tickets up to date.
 
-> **Status: early development.** Only the project scaffold, the UI base, the ticket domain rules and an in-memory data layer exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
+> **Status: early development.** Only the project scaffold, the UI base, the ticket domain rules, an in-memory data layer and a mock sign-in exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
 
 ## Planned features
 
@@ -97,7 +97,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open http://localhost:3000. You are sent to the sign-in page, where one demo account per role (customer, technician and admin) signs in with a single click. While authentication is a mock, any password works.
 
 ## Design system
 
@@ -128,7 +128,7 @@ Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the 
 - [x] Design tokens and UI base (light and dark themes, responsive layout)
 - [x] Ticket domain: status machine, permissions, estimate rules
 - [x] In-memory repository and demo seed data
-- [ ] Mock authentication with the three roles
+- [x] Mock authentication with the three roles
 - [ ] Customer screens
 - [ ] Shop team screens
 - [ ] Real database (Neon + Drizzle migrations) and real authentication
@@ -141,3 +141,5 @@ Online payments, inventory and parts purchasing, WhatsApp/SMS/email notification
 ## Production notes
 
 While the in-memory repository is in use, data lives in the server process: it resets on restart and is not shared between instances, so it is for development and demos only. Production data will live in Neon Postgres.
+
+The sign-in is a mock too: any password is accepted, and the session cookie holds the bare user id without a signature, so anyone can forge it. It must be replaced by real authentication before the app is exposed to real users.
