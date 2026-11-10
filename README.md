@@ -2,7 +2,7 @@
 
 A web portal for a small electronics repair shop. Customers open repair tickets and follow their progress; the shop team diagnoses devices, records estimates and keeps tickets up to date.
 
-> **Status: early development.** Only the project scaffold exists so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
+> **Status: early development.** Only the project scaffold and the UI base exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
 
 ## Planned features
 
@@ -23,11 +23,11 @@ A web portal for a small electronics repair shop. Customers open repair tickets 
 
 ## Roles
 
-| Role | Access |
-| --- | --- |
-| Customer | Own tickets only. Public sign-up always creates this role. |
+| Role       | Access                                                            |
+| ---------- | ----------------------------------------------------------------- |
+| Customer   | Own tickets only. Public sign-up always creates this role.        |
 | Technician | Tickets assigned to them. Cannot manage users or global settings. |
-| Admin | Everything: all tickets, technician assignment, user management. |
+| Admin      | Everything: all tickets, technician assignment, user management.  |
 
 Permissions are enforced on the server for every read and write, not only by hiding buttons. Internal notes are never returned to customers.
 
@@ -97,16 +97,22 @@ npm run dev
 
 Open http://localhost:3000.
 
+## Design system
+
+Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the shadcn/ui components in `src/components/ui` consume them. The light and dark themes follow the saved choice or the system preference, and a script in the root layout applies it before first paint. Status tones always pair a color with a text label. Browse every component at `/ui-kit`.
+
 ## Scripts
 
-| Script | Description |
-| --- | --- |
-| `npm run dev` | Start the dev server |
-| `npm run build` | Production build |
-| `npm run typecheck` | Type-check with `tsc --noEmit` |
-| `npm run lint` | Run ESLint |
-| `npm test` | Run tests in watch mode |
-| `npm run test:run` | Run tests once |
+| Script                 | Description                    |
+| ---------------------- | ------------------------------ |
+| `npm run dev`          | Start the dev server           |
+| `npm run build`        | Production build               |
+| `npm run typecheck`    | Type-check with `tsc --noEmit` |
+| `npm run lint`         | Run ESLint                     |
+| `npm test`             | Run tests in watch mode        |
+| `npm run test:run`     | Run tests once                 |
+| `npm run format`       | Format the code with Prettier  |
+| `npm run format:check` | Check formatting with Prettier |
 
 ## Conventions
 
@@ -117,7 +123,7 @@ Open http://localhost:3000.
 ## Roadmap
 
 - [x] Project setup: Next.js, Tailwind, Vitest, lint rules
-- [ ] Design tokens and UI base (light and dark themes, responsive layout)
+- [x] Design tokens and UI base (light and dark themes, responsive layout)
 - [ ] Ticket domain: status machine, permissions, estimate rules
 - [ ] In-memory repository and demo seed data
 - [ ] Mock authentication with the three roles
