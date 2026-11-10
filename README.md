@@ -2,7 +2,7 @@
 
 A web portal for a small electronics repair shop. Customers open repair tickets and follow their progress; the shop team diagnoses devices, records estimates and keeps tickets up to date.
 
-> **Status: early development.** Only the project scaffold, the UI base and the ticket domain rules exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
+> **Status: early development.** Only the project scaffold, the UI base, the ticket domain rules and an in-memory data layer exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
 
 ## Planned features
 
@@ -77,7 +77,7 @@ flowchart LR
 
 - **Domain** holds pure, tested business rules: status transitions, permissions, estimate approval.
 - **Services** orchestrate use cases and run authorization checks.
-- **Repository** is an interface. The first implementation is in memory so the product can be built end to end; the Neon Postgres + Drizzle implementation (dashed) replaces it last, without touching the layers above.
+- **Repository** is an interface. The first implementation is in memory so the product can be built end to end; the Neon Postgres + Drizzle implementation (dashed) replaces it last, without touching the layers above. The interface and the in-memory version live in `src/server/repository`, and `getRepository()` returns one shared instance filled with demo data (all users and emails are made up).
 - Input is validated with Zod on the server, with field-level error messages.
 
 ## Stack
@@ -127,7 +127,7 @@ Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the 
 - [x] Project setup: Next.js, Tailwind, Vitest, lint rules
 - [x] Design tokens and UI base (light and dark themes, responsive layout)
 - [x] Ticket domain: status machine, permissions, estimate rules
-- [ ] In-memory repository and demo seed data
+- [x] In-memory repository and demo seed data
 - [ ] Mock authentication with the three roles
 - [ ] Customer screens
 - [ ] Shop team screens
