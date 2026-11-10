@@ -2,7 +2,7 @@
 
 A web portal for a small electronics repair shop. Customers open repair tickets and follow their progress; the shop team diagnoses devices, records estimates and keeps tickets up to date.
 
-> **Status: early development.** Only the project scaffold and the UI base exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
+> **Status: early development.** Only the project scaffold, the UI base and the ticket domain rules exist so far. Everything under [Planned features](#planned-features) is a goal, not something you can use yet. See [Roadmap](#roadmap).
 
 ## Planned features
 
@@ -60,6 +60,8 @@ stateDiagram-v2
 ```
 
 Transitions are business rules validated on the server. Completed, Declined and Cancelled are final.
+
+Staff (the assigned technician or an admin) make the status changes, except that only the customer approves or declines an estimate, and only an admin cancels from Awaiting approval or In repair. Customers cannot cancel. Asking for approval needs a pending estimate, and changing the amount of an estimate sends a ticket in repair back to Awaiting approval. The rules live in `src/domain/ticket`.
 
 ## Architecture
 
@@ -124,7 +126,7 @@ Tokens (color, radius, shadow, status tones) live in `src/app/globals.css`; the 
 
 - [x] Project setup: Next.js, Tailwind, Vitest, lint rules
 - [x] Design tokens and UI base (light and dark themes, responsive layout)
-- [ ] Ticket domain: status machine, permissions, estimate rules
+- [x] Ticket domain: status machine, permissions, estimate rules
 - [ ] In-memory repository and demo seed data
 - [ ] Mock authentication with the three roles
 - [ ] Customer screens
